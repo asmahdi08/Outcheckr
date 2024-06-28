@@ -1,5 +1,6 @@
 import colorama
 import sys
+import argparse
 
 colorama.init()
 
@@ -28,7 +29,16 @@ banner = f"""{Green}
 {Reset}"""
 
 print(banner)
-print("Welcome to Outcheckr, an advanced tool for checking outbound links from a domain")
-print("#Coded by Ashfaq Sadat")
+print("Welcome to Outcheckr, an advanced tool for checking outbound links from a domain\n")
+print("#Coded by Ashfaq Sadat\n\n")
 
+parser = argparse.ArgumentParser("Argparser")
+
+parser.add_argument('-u', '--url', help = "url to check for", required=True)
+
+args = parser.parse_args()
+
+checkingurl = args.url
+
+print(checkingurl)
 
