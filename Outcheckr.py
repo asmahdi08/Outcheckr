@@ -1,8 +1,23 @@
-import cmd
+import colorama
+import sys
 
-class Outcheckr:
+colorama.init()
 
-    banner = """
+is_windows=sys.platform.startswith('win')
+
+Green = colorama.Fore.GREEN
+Magenta = colorama.Fore.MAGENTA
+Red = colorama.Fore.RED
+Reset = colorama.Fore.RESET
+
+if is_windows:
+    import win_unicode_console
+
+    win_unicode_console.enable()
+
+prompt = '>>'
+
+banner = f"""{Green}
  ██████╗ ██╗   ██╗████████╗ ██████╗██╗  ██╗███████╗ ██████╗██╗  ██╗██████╗ 
 ██╔═══██╗██║   ██║╚══██╔══╝██╔════╝██║  ██║██╔════╝██╔════╝██║ ██╔╝██╔══██╗
 ██║   ██║██║   ██║   ██║   ██║     ███████║█████╗  ██║     █████╔╝ ██████╔╝
@@ -10,13 +25,10 @@ class Outcheckr:
 ╚██████╔╝╚██████╔╝   ██║   ╚██████╗██║  ██║███████╗╚██████╗██║  ██╗██║  ██║
  ╚═════╝  ╚═════╝    ╚═╝    ╚═════╝╚═╝  ╚═╝╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝
                                                                            
-"""
+{Reset}"""
 
-    print(banner)
-    print("Welcome to Outcheckr, an advanced tool for checking outbound links from a domain")
-    print("Please make sure to use the tool for educational or ethical purposes only.The owner is not responsible of any harm done using this tool.")
-    print(">>")
-    command = input()
-    cmd_ = cmd.Cmd()
+print(banner)
+print("Welcome to Outcheckr, an advanced tool for checking outbound links from a domain")
+print("#Coded by Ashfaq Sadat")
 
-    cmd_.cmdloop()
+
