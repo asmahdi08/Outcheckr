@@ -35,6 +35,9 @@ print("#Coded by Ashfaq Sadat\n\n")
 parser = argparse.ArgumentParser("Argparser")
 
 parser.add_argument('-u', '--url', help = "url to check for", required=True)
+parser.add_argument('-n', '--no-color', help = "output without colors", nargs='?',required=False)
+parser.add_argument('-v', '--verbose', help = "Display results real-time",nargs='?', required=False)
+parser.add_argument('-o', '--output', help = "file to save the results", required=True)
 
 args = parser.parse_args()
 
