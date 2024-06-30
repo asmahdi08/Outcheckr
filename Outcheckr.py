@@ -1,6 +1,7 @@
 import colorama
 import sys
 import argparse
+import outbound
 
 colorama.init()
 
@@ -37,11 +38,13 @@ parser = argparse.ArgumentParser("Argparser")
 parser.add_argument('-u', '--url', help = "url to check for", required=True)
 parser.add_argument('-n', '--no-color', help = "output without colors", nargs='?',required=False)
 parser.add_argument('-v', '--verbose', help = "Display results real-time",nargs='?', required=False)
-parser.add_argument('-o', '--output', help = "file to save the results", required=True)
+parser.add_argument('-o', '--output', help = "file to save the results", required=False)
 
 args = parser.parse_args()
 
 checkingurl = args.url
 
-print(checkingurl)
+ols= outbound.outbound.get_outbound_links(checkingurl)
 
+for link in ols:
+    print(link)
