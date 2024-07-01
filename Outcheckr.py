@@ -22,28 +22,40 @@ if is_windows:
 
 prompt = '>>'
 
-banner = f"""{Green}
- ██████╗ ██╗   ██╗████████╗ ██████╗██╗  ██╗███████╗ ██████╗██╗  ██╗██████╗ 
-██╔═══██╗██║   ██║╚══██╔══╝██╔════╝██║  ██║██╔════╝██╔════╝██║ ██╔╝██╔══██╗
-██║   ██║██║   ██║   ██║   ██║     ███████║█████╗  ██║     █████╔╝ ██████╔╝
-██║   ██║██║   ██║   ██║   ██║     ██╔══██║██╔══╝  ██║     ██╔═██╗ ██╔══██╗
-╚██████╔╝╚██████╔╝   ██║   ╚██████╗██║  ██║███████╗╚██████╗██║  ██╗██║  ██║
- ╚═════╝  ╚═════╝    ╚═╝    ╚═════╝╚═╝  ╚═╝╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝
-                                                                           
-{Reset}"""
+def banner():
 
-print(banner)
-print("Welcome to Outcheckr, an advanced tool for checking outbound links from a domain\n")
-print("#Coded by Ashfaq Sadat\n\n")
+    banner = f"""{Green}
+     ██████╗ ██╗   ██╗████████╗ ██████╗██╗  ██╗███████╗ ██████╗██╗  ██╗██████╗ 
+    ██╔═══██╗██║   ██║╚══██╔══╝██╔════╝██║  ██║██╔════╝██╔════╝██║ ██╔╝██╔══██╗
+    ██║   ██║██║   ██║   ██║   ██║     ███████║█████╗  ██║     █████╔╝ ██████╔╝
+    ██║   ██║██║   ██║   ██║   ██║     ██╔══██║██╔══╝  ██║     ██╔═██╗ ██╔══██╗
+    ╚██████╔╝╚██████╔╝   ██║   ╚██████╗██║  ██║███████╗╚██████╗██║  ██╗██║  ██║
+     ╚═════╝  ╚═════╝    ╚═╝    ╚═════╝╚═╝  ╚═╝╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝
+    {Reset}"""
+    print(banner)
+    print("Welcome to Outcheckr, an advanced tool for checking outbound links from a domain\n")
+    print("#Coded by Ashfaq Sadat\n\n")
 
 parser = argparse.ArgumentParser("Argparser")
 
 parser.add_argument('-u', '--url', help = "url to check for", required=True)
-parser.add_argument('-n', '--no-color', help = "output without colors", nargs='?',required=False, default=False)
+parser.add_argument('-n', '--no-color', help = "output without colors",required=False, action="store_true")
 parser.add_argument('-v', '--verbose', help = "Display results real-time", required=False, action="store_true")
 parser.add_argument('-o', '--output', help = "file to save the results", required=False)
 
 args = parser.parse_args()
+
+if args.no_color:
+    Green=""
+    Magenta = ""
+    Red = ""
+    Reset = ""
+    white = ""
+
+banner()
+
+if args.no_color:
+    print(f"{white}[-]{Green}no-color is on. colors are not displayed{Reset}\n")
 
 if args.verbose:
     print(f"{white}[-]{Green}verbosity is on. Output will be displayed{Reset}\n")
