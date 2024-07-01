@@ -1,0 +1,9 @@
+https://maps.google.com.bd/maps?hl=bn&tab=wl
+https://play.google.com/?hl=bn&tab=w8
+https://www.youtube.com/?tab=w1
+https://news.google.com/?tab=wn
+https://mail.google.com/mail/?tab=wm
+https://drive.google.com/?tab=wo
+https://www.google.com.bd/intl/bn/about/products?tab=wh
+http://www.google.com.bd/history/optout?hl=bn
+https://accounts.google.com/ServiceLogin?hl=bn&passive=true&continue=https://www.google.com/&ec=GAZAAQ
