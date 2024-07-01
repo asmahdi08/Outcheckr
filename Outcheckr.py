@@ -89,6 +89,8 @@ def get_outbound_links(domain):
 
             if url_name and url_name != domain_name :
                 o_links.append(full_url)
+            
+
         
         if o_links :
             return o_links
