@@ -5,6 +5,7 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse, urljoin
 import os
+import re
 
 colorama.init()
 
@@ -93,13 +94,16 @@ def get_outbound_links(domain):
             return o_links
         else:
             return None
+        
+def sanitize(text):
+    sanitized = re.sub(r'[^a-zA-Z0-9_\-]', '_', text)
+    return sanitized
 
 def parse_input_file(filen):
-    file = open(f"./input/{filen}", "r")
+    with open(f"./input/{filen}", "r") as file:
+        urls = [line.strip() for line in file]
 
-    inputs = file.readlines()
-
-    return inputs
+    return urls
 
 def file_write(filename, intype):
     if ".txt" in filename:
@@ -117,8 +121,9 @@ def file_write(filename, intype):
         for inlink in inputlinks:
             ll = get_outbound_links(inlink)
             for files in inputlinks:
-                os.mkdir(f"./output/(folder){filename}")
-                out = open(f"./output/(folder){filename}/{files}", "w")
+                os.makedirs(f"./output/(folder){filename}", exist_ok=True)
+                foldername = sanitize(files)
+                out = open(f"./output/(folder){filename}/{foldername}.txt", "w")
                 for link in ll:
                     out.write(link+"\n")
                     outall.write(link+"\n")
@@ -139,8 +144,3 @@ if args.verbose:
     outs = outfile.readlines()
     for link in outs:
         print(link+"\n")
-
-
-
-
-
