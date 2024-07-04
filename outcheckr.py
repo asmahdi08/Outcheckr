@@ -136,6 +136,8 @@ if args.output:
     else:
         file_write(filename=args.output,intype="single")
 
+    print(f"{Green}Successfuly written to file!{Reset}")
+
 if args.verbose:
     fn = args.output
     if ".txt" in fn :
