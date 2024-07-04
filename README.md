@@ -1,6 +1,7 @@
 # Outcheckr
 
 Outcheckr is a powerful tool for enumerating outbound links from web pages. It can fetch all outbound links from a given URL or from multiple URLs listed in a file. This tool is useful for web scraping, SEO analysis, bug bounty hunting.
+
 (use for educational purposes only.)
 
 ## Features
