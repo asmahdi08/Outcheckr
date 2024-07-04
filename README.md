@@ -1,2 +1,2 @@
 # Outcheckr
-A great tool to find outbound links in a website
+simple outbound link enumerator from web pages
