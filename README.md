@@ -24,13 +24,13 @@ Outcheckr is a powerful tool for enumerating outbound links from web pages. It c
 1. Clone the repository:
   
   ```sh
-  git clone https://github.com/yourusername/outcheckr.git
+  https://github.com/asmahdi08/Outcheckr.git
   ```
 
 2. Navigate to the project directory:
 
   ```sh
-  cd outcheckr
+  cd Outcheckr
   ```
 
 3. Install the required dependencies:
