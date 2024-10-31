@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 from urllib.parse import urlparse, urljoin
 import os
 import re
+from concurrent.futures import ThreadPoolExecutor
 
 colorama.init()
 
@@ -44,6 +45,7 @@ parser.add_argument('-u', '--url', help = "url to check for", required=True)
 parser.add_argument('-n', '--no-color', help = "output without colors",required=False, action="store_true")
 parser.add_argument('-v', '--verbose', help = "Display results real-time", required=False, action="store_true")
 parser.add_argument('-o', '--output', help = "file to save the results", required=True)
+parser.add_argument('-t', '--threads', help = "number of threads to use if you want to use threading", required=False, type=int, default=1)
 
 args = parser.parse_args()
 
@@ -107,6 +109,9 @@ def parse_input_file(filen):
 
     return urls
 
+def fetch_links_thread(url):
+    return get_outbound_links(url)
+
 def file_write(filename, intype):
     if ".txt" in filename:
         pass
@@ -120,15 +125,15 @@ def file_write(filename, intype):
     elif intype == "multiple":
         inputlinks = parse_input_file(filen=args.url)
         outall = open(f"./output/{filename}", "w")
-        for inlink in inputlinks:
-            ll = get_outbound_links(inlink)
-            for files in inputlinks:
-                os.makedirs(f"./output/(folder){filename}", exist_ok=True)
-                foldername = sanitize(files)
-                out = open(f"./output/(folder){filename}/{foldername}.txt", "w")
-                for link in ll:
-                    out.write(link+"\n")
-                    outall.write(link+"\n")
+        with ThreadPoolExecutor(max_workers=args.threads) as executor:
+            results = list(executor.map(fetch_links_thread, inputlinks))
+        for inlink, ll in zip(inputlinks, results):
+            os.makedirs(f"./output/(folder){filename}", exist_ok=True)
+            foldername = sanitize(inlink)
+            out = open(f"./output/(folder){filename}/{foldername}.txt", "w")
+            for link in ll:
+                out.write(link+"\n")
+                outall.write(link+"\n")
 
 if args.output:
     if ".txt" in args.url:

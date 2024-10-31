@@ -12,6 +12,7 @@ Outcheckr is a powerful tool for enumerating outbound links from web pages. It c
 - Supports output in coloured or plain text.
 - Real-time display of results with verbosity option.
 - Save results to a specified output file.
+- Threading for faster web requests.
 
 ## Requirements
 
@@ -52,13 +53,14 @@ python outcheckr.py -u <URL> -o <output_file>
 - -n, --no-color: Output without colors. Optional.
 - -v, --verbose: Display results real-time. Optional.
 - -o, --output: File to save the results. Required.
+- -t, --threads: Number of threads to use if you want to use threading.Optional. Default is 4.
+
 ## Examples
 - Fetch outbound links from a single URL and save to results.txt:
 
 ```sh
 python outcheckr.py -u https://example.com -o results.txt
 ```
-
 
 - Fetch outbound links from a single URL without color output:
 
@@ -76,6 +78,12 @@ python outcheckr.py -u urls.txt -o results.txt
 
 ```sh
 python outcheckr.py -u https://example.com -o results.txt -v
+```
+
+- Fetch outbound links from multiple URLs listed in urls.txt using 8 threads and save to results.txt:
+
+```sh
+python outcheckr.py -u urls.txt -o results.txt -t 8
 ```
 
 # License
